@@ -2,7 +2,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import GenderChart from './components/GenderChart';
-import { formatAge, formatHour } from './utils/format';
 import DataTable from './components/DataTable';
 
 
@@ -16,7 +15,7 @@ export default function Home() {
 
   const fetchPaginatedUsers = async (page = 1) => {
     try {
-      const res = await axios.get(`${API_URL}/api/paginated?page=${page}&limit=50`);
+      const res = await axios.get(`${API_URL}/api/users/paginated?page=${page}&limit=50`);
       setUsers(res.data.data);
       setTotalPages(res.data.totalPages);
       setPage(res.data.page);
@@ -27,7 +26,7 @@ export default function Home() {
 
   const fetchGenderData = async () => {
     try {
-      const res = await axios.get(`${API_URL}/api/analytics/gender`);
+      const res = await axios.get(`${API_URL}/api/users/analytics/gender`);
       setGenderData(res.data);
     } catch (err) {
       console.error('❌ Failed to fetch gender data:', err);
@@ -36,8 +35,11 @@ export default function Home() {
 
   useEffect(() => {
     fetchPaginatedUsers(page);
-    fetchGenderData();
   }, [page]);
+
+  useEffect(() => {
+    fetchGenderData();
+  }, []); // gender data hanya di-fetch sekali saat mount
 
   return (
     <div className="p-8 font-sans bg-gradient-to-br from-blue-50 to-indigo-50 min-h-screen text-gray-900">
