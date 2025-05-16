@@ -58,7 +58,7 @@ Frontend berjalan di http://localhost:3000
 Frontend:
 Next.js / React
 Axios
-Tailwind CSS (jika digunakan)
+Tailwind CSS
 
 Backend:
 Express.js 
