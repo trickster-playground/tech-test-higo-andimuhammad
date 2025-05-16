@@ -12,6 +12,8 @@ export default function Home() {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
   const fetchPaginatedUsers = async (page = 1) => {
     try {
       const res = await axios.get(`${API_URL}/api/paginated?page=${page}&limit=50`);
