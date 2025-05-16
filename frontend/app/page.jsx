@@ -14,7 +14,7 @@ export default function Home() {
 
   const fetchPaginatedUsers = async (page = 1) => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/paginated?page=${page}&limit=50`);
+      const res = await axios.get(`${API_URL}/api/paginated?page=${page}&limit=50`);
       setUsers(res.data.data);
       setTotalPages(res.data.totalPages);
       setPage(res.data.page);
@@ -25,7 +25,7 @@ export default function Home() {
 
   const fetchGenderData = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/analytics/gender');
+      const res = await axios.get(`${API_URL}/api/analytics/gender`);
       setGenderData(res.data);
     } catch (err) {
       console.error('❌ Failed to fetch gender data:', err);
